@@ -8,6 +8,6 @@ const Root = styled.div `
   padding: 5px 0;
 `
 
-export const TodoItemContainer = ({ children, style }) => {//
-    return <Root style={style}>{children}</Root>//
+export const TodoItemContainer = ({ children, style }) => {
+    return <Root style={style}>{children}</Root>
 }

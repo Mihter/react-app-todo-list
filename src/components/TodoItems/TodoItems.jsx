@@ -35,7 +35,7 @@ export const TodoItems = () => {
         return clearedItemTitle.includes(clearedSearchValue) || clearedSearchValue.length < 3;
     });
 
-    const onClickHandler = () => {
+    const onClickSortHandler = () => {
         setSortedItems(filteredBySearchItems.sort((a, b) => b.priority - a.priority));
     };
 
@@ -59,7 +59,15 @@ export const TodoItems = () => {
   return (
       <TodoItemsContainer>
           <SearchInput value={searchValue} setValue={setSearchValue} setSortedItems={setSortedItems} />
-          <button onClick={onClickHandler}>Отсортировать по возрастанию</button>
+          <button onClick={onClickSortHandler} style={{
+              backgroundColor: 'rgba(173, 216, 230, 0.5)', 
+              borderRadius: '15px', 
+              padding: '10px 15px', 
+              transition: 'background-color 0.3s' 
+          }}
+              onMouseEnter={(e) => e.currentTarget.style.backgroundColor = 'rgba(173, 216, 230, 0.7)'} 
+              onMouseLeave={(e) => e.currentTarget.style.backgroundColor = 'rgba(173, 216, 230, 0.5)'} 
+          >Сортировать от 1 до 5</button>
           {todoItemsElements}
           <NewTodoItem />
     </TodoItemsContainer>

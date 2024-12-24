@@ -28,14 +28,14 @@ export const CheckboxContainer = styled.span(props => {
   `;
 });
 
-//
 export const TodoItemCheckbox = ({ disabled, checked, id, priority }) => {
     const { mutate } = useUpdateTodoItem();
-    const onClickHandler = () => {
-        if (disabled) {
-            return;
+    const handleCheckboxClick = () => {
+
+        if (!disabled) { 
+            mutate({ id, checked: !checked, priority }); 
         }
-        mutate({ id, checked: !checked, priority });
+
     };
-    return <CheckboxContainer disabled={disabled} checked={checked} onClick={onClickHandler} />
+    return <CheckboxContainer disabled={disabled} checked={checked} onClick={handleCheckboxClick} />
 }
