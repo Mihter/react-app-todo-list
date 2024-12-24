@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import {useSaveNewTodoItem} from '../../data/hooks/useData';
 import { PriorityInput } from '../TodoItem/PriorityInput';//
 
-
+//тут textarea, чтобы многострочный текст вводить ибо input такого не даст(
 const Input = styled.textarea`
   flex-grow: 1;
 

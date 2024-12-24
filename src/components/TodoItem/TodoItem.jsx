@@ -31,7 +31,7 @@ const Delete = styled.span`
 `;
 //
 export const TodoItem = ({ title, checked, id, priority }) => {
-    const [color, setColor] = useState(240 - 120 / priority);
+    const [color, setColor] = useState(50 * priority);
     const { mutate } = useDeleteTodoItem();
     const onClickDeleteHandler = () => {
         if (confirm(`Óäàëèòü ıëåìåíò ${title}?`)) {
@@ -39,7 +39,7 @@ export const TodoItem = ({ title, checked, id, priority }) => {
         }
     }
     return (
-        <TodoItemContainer style={{ backgroundColor: `rgb(${color}, 0, 0)` }}>
+        <TodoItemContainer style={{ backgroundColor: `rgb(${color}, 170, 20)` }}>
             <TodoItemCheckbox checked={checked} disabled={false} id={id} priority={priority} />
             <PriorityInput checked={checked} id={id} priority={priority} setColor={setColor} />
       <Title checked={checked}>
