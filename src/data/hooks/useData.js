@@ -18,8 +18,8 @@ export const useSaveNewTodoItem = () => {
   const client = useQueryClient();
 
   const {mutate, isPending, isSuccess} = useMutation({
-    mutationFn: ({title}) => {
-      const newTodoItem = new TodoItem(new Date().getTime(), title, false);
+      mutationFn: ({ title, priority }) => {
+          const newTodoItem = new TodoItem(new Date().getTime(), title, false, priority);
       return LocalStorage.saveTodoItemToLocalStorage(newTodoItem)
     },
     onSuccess: () => {
@@ -32,4 +32,38 @@ export const useSaveNewTodoItem = () => {
     isPending,
     isSuccess
   }
+}
+
+export const useDeleteTodoItem = () => {
+    const client = useQueryClient();
+
+    const { mutate } = useMutation({
+        mutationFn: ({ id }) => {
+            return LocalStorage.deleteTodoItemFromLocalStorage(id);
+        },
+        onSuccess: () => {
+            client.invalidateQueries(['todo']);
+        },
+    });
+
+    return {
+        mutate
+    }
+}
+
+export const useUpdateTodoItem = () => {
+    const client = useQueryClient();
+
+    const { mutate } = useMutation({
+        mutationFn: ({ id, checked, priority }) => {
+            return LocalStorage.updateTodoItemInLocalStorage(id, checked, priority);
+        },
+        onSuccess: () => {
+            client.invalidateQueries(['todo']);
+        },
+    });
+
+    return {
+        mutate
+    }
 }
